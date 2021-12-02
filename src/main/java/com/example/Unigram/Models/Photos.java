@@ -1,4 +1,6 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
+
+import com.example.Unigram.Models.Campus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

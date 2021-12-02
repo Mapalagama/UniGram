@@ -1,4 +1,6 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
+
+import com.example.Unigram.DTO.ContactDTO;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -11,6 +13,15 @@ public class Contacts {
     private String mobile;
     private String fax;
     private String email;
+
+    public static Contacts createContact(ContactDTO contactDTO){
+        Contacts contacts = new Contacts();
+        contacts.setLand(contactDTO.getLand());
+        contacts.setMobile(contactDTO.getLand());
+        contacts.setEmail(contactDTO.getEmail());
+        contacts.setFax(contactDTO.getFax());
+        return contacts;
+    }
 
     public String getLand() {
         return land;

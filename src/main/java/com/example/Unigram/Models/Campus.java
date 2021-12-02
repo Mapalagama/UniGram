@@ -1,4 +1,6 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
+
+import com.example.Unigram.DTO.CampusDTO;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,8 +21,18 @@ public class Campus {
     @OneToMany(mappedBy = "campus")
     private List<Photos> photos;
     @OneToMany(mappedBy = "campus")
-
     private List<Faculty> faculties;
+
+    public static Campus createcampus(CampusDTO campusDTO){
+        Campus campus = new Campus();
+        campus.setName(campusDTO.getName());
+        campus.setAddress(campusDTO.getAddress());
+        campus.setChancellor(campusDTO.getChancellor());
+        campus.setFounder(campusDTO.getFounder());
+        campus.setStartedDate(campusDTO.getStartedDate());
+        campus.setContacts(Contacts.createContact(campusDTO.getContactDTO()));
+        return campus;
+    }
 
     public Integer getId() {
         return id;

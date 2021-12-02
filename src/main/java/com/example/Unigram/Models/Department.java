@@ -1,4 +1,4 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
 
 import javax.persistence.*;
 import java.util.List;

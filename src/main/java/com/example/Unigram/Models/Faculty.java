@@ -1,4 +1,8 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
+
+import com.example.Unigram.Models.Campus;
+import com.example.Unigram.Models.Contacts;
+import com.example.Unigram.Models.Department;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,18 +1,29 @@
-package com.example.Unigram;
+package com.example.Unigram.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.example.Unigram.Models.Program;
+
+import javax.persistence.*;
 
 @Entity
 public class Subject {
     @Id
+    @GeneratedValue
+    private Integer id;
+    @Column(unique = true)
     private String code;
     private String name;
     private Integer credit;
     private String semester;
     @ManyToOne
     private Program program;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCode() {
         return code;
