@@ -5,6 +5,8 @@ import com.example.Unigram.Repositories.CampusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CampusService {
     @Autowired
@@ -19,8 +21,12 @@ public class CampusService {
         return campusRepository.findById(campusId).orElse(null);
     }
 
-    public void updateCampus(Campus campus) {
+    public Campus updateCampus(Campus campus, Integer campusId) {
+        Optional<Campus> campus1 = campusRepository.findById(campusId);
+       Campus campus2 = campus1.get();
+       campus.setId(campus2.getId());
         campusRepository.save(campus);
+        return campus;
     }
 
     public void deleteCampus(Integer campusId) {

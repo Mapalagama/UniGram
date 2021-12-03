@@ -30,7 +30,10 @@ public class Campus {
         campus.setChancellor(campusDTO.getChancellor());
         campus.setFounder(campusDTO.getFounder());
         campus.setStartedDate(campusDTO.getStartedDate());
-        campus.setContacts(Contacts.createContact(campusDTO.getContactDTO()));
+        if (campusDTO.getContactDTO()!=null){ Contacts contact = Contacts.createContact(campusDTO.getContactDTO());
+            campus.setContacts(contact);
+        }
+
         return campus;
     }
 

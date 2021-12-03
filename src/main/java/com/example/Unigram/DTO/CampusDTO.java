@@ -16,12 +16,15 @@ public class CampusDTO {
 
     public static CampusDTO createCampusDTO(Campus campus){
         CampusDTO campusDTO1 = new CampusDTO();
+        campusDTO1.setId(campus.getId());
         campusDTO1.setName(campus.getName());
         campusDTO1.setAddress(campus.getAddress());
         campusDTO1.setChancellor(campus.getChancellor());
         campusDTO1.setFounder(campus.getFounder());
         campusDTO1.setStartedDate(campus.getStartedDate());
-        campusDTO1.setContactDTO(ContactDTO.createContactDTO(campus.getContacts()));
+        if(campus.getContacts()!=null) {
+            campusDTO1.setContactDTO(ContactDTO.createContactDTO(campus.getContacts()));
+        }
         return campusDTO1;
     }
 

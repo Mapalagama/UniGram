@@ -7,10 +7,7 @@ import com.example.Unigram.Services.CampusService;
 import com.example.Unigram.Models.Campus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -28,5 +25,27 @@ public class CampusController {
         return ResponseEntity.ok(createdCampusDTO);
 
 
+    }
+
+    @GetMapping("/campus/{id}")
+    public ResponseEntity<CampusDTO> getCampus(@PathVariable("id") Integer campusId) {
+        Campus campus = campusService.getCampus(campusId);
+        CampusDTO campusDTO = CampusDTO.createCampusDTO(campus);
+        return ResponseEntity.ok(campusDTO);
+    }
+
+    @PutMapping("/campus/{id}")
+    public ResponseEntity<CampusDTO> updateCampus(@PathVariable("id") Integer campusId,
+                                                  @RequestBody CampusDTO campusDTO) {
+       Campus campus = Campus.createcampus(campusDTO);
+       Campus campus1 = campusService.updateCampus(campus,campusId);
+       CampusDTO campusDTO1 = CampusDTO.createCampusDTO(campus1);
+       return ResponseEntity.ok(campusDTO1);
+
+    }
+    @DeleteMapping("/campus/{id}")
+    public ResponseEntity<String> deleteCampus(@PathVariable("id") Integer campusId){
+        campusService.deleteCampus(campusId);
+        return ResponseEntity.ok("Campus deleted");
     }
 }
