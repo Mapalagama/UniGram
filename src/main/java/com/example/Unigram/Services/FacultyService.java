@@ -5,21 +5,29 @@ import com.example.Unigram.Repositories.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class FacultyService {
     @Autowired
     private FacultyRepository facultyRepository;
 
-    public void createFaculty(Faculty faculty) {
-        facultyRepository.save(faculty);
+    public Faculty createFaculty(Faculty faculty) {
+        return facultyRepository.save(faculty);
     }
 
     public Faculty getFaculty(Integer facultyId) {
         return facultyRepository.findById(facultyId).orElse(null);
     }
 
-    public void updateFaculty(Faculty faculty) {
+    public Faculty updateFaculty(Faculty faculty,Integer facultyId) {
+        Optional<Faculty> faculty1 = facultyRepository.findById(facultyId);
+        Faculty faculty2 = faculty1.get();
+        faculty.setId(faculty2.getId());
+        faculty.setCampus(faculty2.getCampus());
         facultyRepository.save(faculty);
+        return faculty;
+
     }
 
     public void deleteFaculty(Integer facultyId) {

@@ -59,7 +59,7 @@ public class CampusControllerTest {
     @Test
     @Order(20)
     public void test_get_campus() {
-        Response response = given().when().get("/campus/" + campusId)
+        Response response = given().when().get("/campus/{id}" , campusId)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
     }
@@ -81,14 +81,14 @@ public class CampusControllerTest {
         dto.setName("testUpdate");
         Response response = given().contentType(ContentType.JSON)
                 .body(dto)
-                .when().put("/campus/" + campusId)
+                .when().put("/campus/{id}" ,campusId)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
     }
     @Test
     @Order(22)
     public void test_delete_campus(){
-        Response response = given().when().delete("/campus/" + campusId)
+        Response response = given().when().delete("/campus/{id}" , campusId)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
 
