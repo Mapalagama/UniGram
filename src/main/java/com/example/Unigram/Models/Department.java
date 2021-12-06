@@ -1,5 +1,7 @@
 package com.example.Unigram.Models;
 
+import com.example.Unigram.DTO.DepartmentDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,17 @@ public class Department {
     private Faculty faculty;
     @OneToMany(mappedBy = "department")
     private List<Program> programs;
+
+    public static Department createDepartment(DepartmentDTO departmentDTO){
+        Department department = new Department();
+        department.setId(departmentDTO.getId());
+        department.setName(departmentDTO.getName());
+        department.setDepartmentHead(departmentDTO.getDepartmentHead());
+        if (departmentDTO.getContactDTO()!=null){
+            department.setContacts(Contacts.createContact(departmentDTO.getContactDTO()));
+        }
+        return department;
+    }
 
     public Integer getId() {
         return id;
