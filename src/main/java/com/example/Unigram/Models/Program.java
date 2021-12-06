@@ -1,5 +1,7 @@
 package com.example.Unigram.Models;
 
+import com.example.Unigram.DTO.ProgramDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,18 @@ public class Program {
     private Department department;
     @OneToMany(mappedBy = "program")
     private List<Subject> subjects;
+
+    public static Program createProgram(ProgramDTO programDTO){
+        Program program = new Program();
+        program.setId(programDTO.getId());
+        program.setName(programDTO.getName());
+        program.setAbout(programDTO.getAbout());
+        program.setContent(programDTO.getContent());
+        program.setDuration(programDTO.getDuration());
+        program.setStartingDate(programDTO.getStartingDate());
+        return program;
+
+    }
 
     public Integer getId() {
         return id;
