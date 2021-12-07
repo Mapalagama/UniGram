@@ -1,31 +1,24 @@
-package com.example.Unigram.Models;
+package com.example.Unigram.DTO;
 
-import com.example.Unigram.DTO.SubjectDTO;
-import com.example.Unigram.Models.Program;
+import com.example.Unigram.Models.Subject;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 
-@Entity
-public class Subject {
-    @Id
-    @GeneratedValue
+public class SubjectDTO {
     private Integer id;
-    @Column(unique = true)
     private String code;
     private String name;
     private Integer credit;
     private String semester;
-    @ManyToOne
-    private Program program;
 
-    public static Subject createSubject(SubjectDTO subjectDTO){
-        Subject subject = new Subject();
-        subject.setId(subjectDTO.getId());
-        subject.setName(subjectDTO.getName());
-        subject.setCode(subjectDTO.getCode());
-        subject.setSemester(subjectDTO.getSemester());
-        subject.setCredit(subjectDTO.getCredit());
-        return subject;
+    public static SubjectDTO createSubjectDTO(Subject subject){
+        SubjectDTO subjectDTO = new SubjectDTO();
+        subjectDTO.setId(subject.getId());
+        subjectDTO.setName(subject.getName());
+        subjectDTO.setCode(subject.getCode());
+        subjectDTO.setCredit(subject.getCredit());
+        subjectDTO.setSemester(subject.getSemester());
+        return subjectDTO;
     }
 
     public Integer getId() {
@@ -66,13 +59,5 @@ public class Subject {
 
     public void setSemester(String semester) {
         this.semester = semester;
-    }
-
-    public Program getProgram() {
-        return program;
-    }
-
-    public void setProgram(Program program) {
-        this.program = program;
     }
 }
