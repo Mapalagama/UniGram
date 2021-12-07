@@ -14,6 +14,7 @@ public class Program {
     private String name;
     private String duration;
     private Date startingDate;
+    @Column(name = "about", nullable = false,  length = 10000)
     private String about;
     private String content;
     @ManyToOne

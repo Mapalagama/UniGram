@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.*;
 public class DepartmentControllerTest {
 
     Faker faker = new Faker();
-    private static Integer facultyId = 15;
+    private static Integer facultyId = 4;
     private static Integer departmentId;
 
     @BeforeAll
