@@ -1,7 +1,11 @@
 package com.example.Unigram.DTO;
 
 import com.example.Unigram.Models.Campus;
+import com.example.Unigram.Models.Department;
+import com.example.Unigram.Models.Faculty;
+import com.example.Unigram.Models.Photos;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CampusDTO {
@@ -13,8 +17,11 @@ public class CampusDTO {
     private Date startedDate;
 
     private ContactDTO contactDTO;
+    private ArrayList<PhotosDTO> photosDTOArrayList;
+    private ArrayList<FacultyDTO> facultyDTOArrayList;
 
-    public static CampusDTO createCampusDTO(Campus campus){
+
+    public static CampusDTO createCampusDTO(Campus campus) {
         CampusDTO campusDTO1 = new CampusDTO();
         campusDTO1.setId(campus.getId());
         campusDTO1.setName(campus.getName());
@@ -22,10 +29,45 @@ public class CampusDTO {
         campusDTO1.setChancellor(campus.getChancellor());
         campusDTO1.setFounder(campus.getFounder());
         campusDTO1.setStartedDate(campus.getStartedDate());
-        if(campus.getContacts()!=null) {
+        if (campus.getContacts() != null) {
             campusDTO1.setContactDTO(ContactDTO.createContactDTO(campus.getContacts()));
         }
+        if (campus.getPhotos() != null) {
+            campusDTO1.setPhotosDTOArrayList(new ArrayList<>());
+            for (Photos photos : campus.getPhotos()) {
+                PhotosDTO photosDTO = PhotosDTO.createPhotoDTO(photos);
+                campusDTO1.getPhotosDTOArrayList().add(photosDTO);
+
+            }
+
+        }
         return campusDTO1;
+    }
+
+    public static CampusDTO createCampusWithAllDate(Campus campus){
+        CampusDTO campusDTO =createCampusDTO(campus);
+        campusDTO.setFacultyDTOArrayList(new ArrayList<>());
+        for (Faculty faculty: campus.getFaculties()){
+            FacultyDTO facultyDTO = FacultyDTO.createFacultyWithAllData(faculty);
+            campusDTO.getFacultyDTOArrayList().add(facultyDTO);
+        }
+        return campusDTO;
+    }
+
+    public ArrayList<FacultyDTO> getFacultyDTOArrayList() {
+        return facultyDTOArrayList;
+    }
+
+    public void setFacultyDTOArrayList(ArrayList<FacultyDTO> facultyDTOArrayList) {
+        this.facultyDTOArrayList = facultyDTOArrayList;
+    }
+
+    public ArrayList<PhotosDTO> getPhotosDTOArrayList() {
+        return photosDTOArrayList;
+    }
+
+    public void setPhotosDTOArrayList(ArrayList<PhotosDTO> photosDTOArrayList) {
+        this.photosDTOArrayList = photosDTOArrayList;
     }
 
     public ContactDTO getContactDTO() {

@@ -15,7 +15,7 @@ public class SubjectControllerTest {
     Faker faker = new Faker();
 
     private static Integer subjectId;
-    private static Integer programId=12;
+    private static Integer programId=32;
 
     @BeforeAll
     public static void beforeAll(){

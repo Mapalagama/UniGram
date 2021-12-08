@@ -33,7 +33,7 @@ public class ProgramContoller {
     @GetMapping("/programmes/{id}")
     public ResponseEntity<ProgramDTO> getProgram(@PathVariable("id") Integer programId) {
         Program program = programService.getProgram(programId);
-        ProgramDTO programDTO = ProgramDTO.createProgramDTO(program);
+        ProgramDTO programDTO = ProgramDTO.createProgramWithAllData(program);
         return ResponseEntity.ok(programDTO);
     }
 

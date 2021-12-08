@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProgramControllerTest {
     Faker faker = new Faker();
-    private static Integer departmentId=8;
+    private static Integer departmentId=31;
     private static Integer programId;
 
     @BeforeAll

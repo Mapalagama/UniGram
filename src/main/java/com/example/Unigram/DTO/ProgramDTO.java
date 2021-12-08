@@ -1,7 +1,10 @@
 package com.example.Unigram.DTO;
 
 import com.example.Unigram.Models.Program;
+import com.example.Unigram.Models.Subject;
 
+import javax.swing.plaf.SeparatorUI;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ProgramDTO {
@@ -12,6 +15,8 @@ public class ProgramDTO {
     private String about;
     private String content;
 
+    private ArrayList<SubjectDTO> subjectDTOArrayList;
+
     public static ProgramDTO createProgramDTO(Program program){
         ProgramDTO programDTO = new ProgramDTO();
         programDTO.setId(program.getId());
@@ -21,6 +26,25 @@ public class ProgramDTO {
         programDTO.setAbout(program.getAbout());
         programDTO.setContent(program.getContent());
         return programDTO;
+    }
+
+    public static ProgramDTO createProgramWithAllData(Program program){
+        ProgramDTO programDTO = createProgramDTO(program);
+        programDTO.setSubjectDTOArrayList(new ArrayList<>());
+        for (Subject subject : program.getSubjects()){
+            SubjectDTO subjectDTO = SubjectDTO.createSubjectDTO(subject);
+            programDTO.getSubjectDTOArrayList().add(subjectDTO);
+        }
+        return programDTO;
+    }
+
+
+    public ArrayList<SubjectDTO> getSubjectDTOArrayList() {
+        return subjectDTOArrayList;
+    }
+
+    public void setSubjectDTOArrayList(ArrayList<SubjectDTO> subjectDTOArrayList) {
+        this.subjectDTOArrayList = subjectDTOArrayList;
     }
 
     public Integer getId() {

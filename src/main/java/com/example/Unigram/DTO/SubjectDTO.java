@@ -11,7 +11,7 @@ public class SubjectDTO {
     private Integer credit;
     private String semester;
 
-    public static SubjectDTO createSubjectDTO(Subject subject){
+    public static SubjectDTO createSubjectDTO(Subject subject) {
         SubjectDTO subjectDTO = new SubjectDTO();
         subjectDTO.setId(subject.getId());
         subjectDTO.setName(subject.getName());

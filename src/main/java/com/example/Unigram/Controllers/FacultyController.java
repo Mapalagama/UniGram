@@ -33,7 +33,7 @@ public class FacultyController {
     @GetMapping("/faculties/{id}")
     public ResponseEntity<FacultyDTO> getFaculty(@PathVariable("id") Integer facultyId) {
         Faculty faculty = facultyService.getFaculty(facultyId);
-        FacultyDTO facultyDTO = FacultyDTO.createFacultyDTO(faculty);
+        FacultyDTO facultyDTO = FacultyDTO.createFacultyWithAllData(faculty);
         return ResponseEntity.ok(facultyDTO);
     }
 

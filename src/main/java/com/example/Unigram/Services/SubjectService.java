@@ -20,7 +20,7 @@ public class SubjectService {
         return subjectRepository.findById(subjectId).orElse(null);
     }
 
-    public Subject updateSubject(Subject subject,Integer subjectId) {
+    public Subject updateSubject(Subject subject, Integer subjectId) {
         Optional<Subject> subject1 = subjectRepository.findById(subjectId);
         Subject subject2 = subject1.get();
         subject.setId(subject2.getId());

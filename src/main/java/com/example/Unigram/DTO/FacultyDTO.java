@@ -1,7 +1,9 @@
 package com.example.Unigram.DTO;
 
+import com.example.Unigram.Models.Department;
 import com.example.Unigram.Models.Faculty;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FacultyDTO {
@@ -12,6 +14,7 @@ public class FacultyDTO {
     private String address;
 
     private ContactDTO contactDTO;
+    private ArrayList<DepartmentDTO> departmentDTOArrayList;
 
     public static FacultyDTO createFacultyDTO(Faculty faculty) {
 
@@ -24,6 +27,23 @@ public class FacultyDTO {
             facultyDTO.setContactDTO(ContactDTO.createContactDTO(faculty.getContacts()));
         }
         return facultyDTO;
+    }
+    public static FacultyDTO createFacultyWithAllData(Faculty faculty){
+        FacultyDTO facultyDTO = createFacultyDTO(faculty);
+        facultyDTO.setDepartmentDTOArrayList(new ArrayList<>());
+        for (Department department : faculty.getDepartments()){
+            DepartmentDTO departmentDTO = DepartmentDTO.createDepartmentWithALlData(department);
+            facultyDTO.getDepartmentDTOArrayList().add(departmentDTO);
+        }
+        return facultyDTO;
+    }
+
+    public ArrayList<DepartmentDTO> getDepartmentDTOArrayList() {
+        return departmentDTOArrayList;
+    }
+
+    public void setDepartmentDTOArrayList(ArrayList<DepartmentDTO> departmentDTOArrayList) {
+        this.departmentDTOArrayList = departmentDTOArrayList;
     }
 
     public String getAddress() {

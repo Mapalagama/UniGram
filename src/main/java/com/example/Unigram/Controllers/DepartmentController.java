@@ -30,7 +30,7 @@ public class DepartmentController {
     @GetMapping("/departments/{id}")
     public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable("id") Integer departmentId){
         Department department = departmentService.getDepartment(departmentId);
-        DepartmentDTO departmentDTO = DepartmentDTO.createDepartmentDTO(department);
+        DepartmentDTO departmentDTO = DepartmentDTO.createDepartmentWithALlData(department);
         return ResponseEntity.ok(departmentDTO);
     }
 

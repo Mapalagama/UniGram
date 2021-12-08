@@ -1,5 +1,6 @@
 package com.example.Unigram.Models;
 
+import com.example.Unigram.DTO.PhotosDTO;
 import com.example.Unigram.Models.Campus;
 
 import javax.persistence.Entity;
@@ -15,6 +16,13 @@ public class Photos {
     private String name;
     @ManyToOne
     private Campus campus;
+
+    public static Photos createPhotos(PhotosDTO photosDTO) {
+        Photos photos = new Photos();
+        photos.setId(photosDTO.getId());
+        photos.setName(photosDTO.getUrl());
+        return photos;
+    }
 
     public Integer getId() {
         return id;

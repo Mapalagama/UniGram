@@ -18,7 +18,7 @@ public class Subject {
     @ManyToOne
     private Program program;
 
-    public static Subject createSubject(SubjectDTO subjectDTO){
+    public static Subject createSubject(SubjectDTO subjectDTO) {
         Subject subject = new Subject();
         subject.setId(subjectDTO.getId());
         subject.setName(subjectDTO.getName());

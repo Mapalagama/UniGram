@@ -1,6 +1,9 @@
 package com.example.Unigram.DTO;
 
 import com.example.Unigram.Models.Department;
+import com.example.Unigram.Models.Program;
+
+import java.util.ArrayList;
 
 public class DepartmentDTO {
     private Integer id;
@@ -8,6 +11,7 @@ public class DepartmentDTO {
     private String departmentHead;
 
     private ContactDTO contactDTO;
+    private ArrayList<ProgramDTO> programDTOArrayList;
 
     public static DepartmentDTO createDepartmentDTO(Department department){
         DepartmentDTO departmentDTO =new DepartmentDTO();
@@ -18,6 +22,23 @@ public class DepartmentDTO {
             departmentDTO.setContactDTO(ContactDTO.createContactDTO(department.getContacts()));
         }
         return departmentDTO;
+    }
+    public static DepartmentDTO createDepartmentWithALlData(Department department){
+        DepartmentDTO departmentDTO = createDepartmentDTO(department);
+        departmentDTO.setProgramDTOArrayList(new ArrayList<>());
+        for (Program program : department.getPrograms()){
+            ProgramDTO programDTO = ProgramDTO.createProgramWithAllData(program);
+            departmentDTO.getProgramDTOArrayList().add(programDTO);
+        }
+        return departmentDTO;
+    }
+
+    public ArrayList<ProgramDTO> getProgramDTOArrayList() {
+        return programDTOArrayList;
+    }
+
+    public void setProgramDTOArrayList(ArrayList<ProgramDTO> programDTOArrayList) {
+        this.programDTOArrayList = programDTOArrayList;
     }
 
     public Integer getId() {

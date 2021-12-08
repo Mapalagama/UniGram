@@ -8,6 +8,7 @@ import com.example.Unigram.Models.Campus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -30,22 +31,32 @@ public class CampusController {
     @GetMapping("/campus/{id}")
     public ResponseEntity<CampusDTO> getCampus(@PathVariable("id") Integer campusId) {
         Campus campus = campusService.getCampus(campusId);
-        CampusDTO campusDTO = CampusDTO.createCampusDTO(campus);
+        CampusDTO campusDTO = CampusDTO.createCampusWithAllDate(campus);
         return ResponseEntity.ok(campusDTO);
     }
 
     @PutMapping("/campus/{id}")
     public ResponseEntity<CampusDTO> updateCampus(@PathVariable("id") Integer campusId,
                                                   @RequestBody CampusDTO campusDTO) {
-       Campus campus = Campus.createcampus(campusDTO);
-       Campus campus1 = campusService.updateCampus(campus,campusId);
-       CampusDTO campusDTO1 = CampusDTO.createCampusDTO(campus1);
-       return ResponseEntity.ok(campusDTO1);
+        Campus campus = Campus.createcampus(campusDTO);
+        Campus campus1 = campusService.updateCampus(campus, campusId);
+        CampusDTO campusDTO1 = CampusDTO.createCampusDTO(campus1);
+        return ResponseEntity.ok(campusDTO1);
 
     }
+
     @DeleteMapping("/campus/{id}")
-    public ResponseEntity<String> deleteCampus(@PathVariable("id") Integer campusId){
+    public ResponseEntity<String> deleteCampus(@PathVariable("id") Integer campusId) {
         campusService.deleteCampus(campusId);
         return ResponseEntity.ok("Campus deleted");
+    }
+
+    @PostMapping("/campus/{id}/photos")
+    public ResponseEntity<CampusDTO> uploadPhotos(@RequestParam("file") MultipartFile imagefiles,
+                                                  @PathVariable("id") Integer campusId) {
+        Campus campus = campusService.addfile(campusId, imagefiles);
+        CampusDTO campusDTO = CampusDTO.createCampusDTO(campus);
+        return ResponseEntity.ok(campusDTO);
+
     }
 }

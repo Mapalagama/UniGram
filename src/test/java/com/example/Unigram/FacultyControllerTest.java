@@ -22,7 +22,7 @@ public class FacultyControllerTest {
         RestAssured.baseURI = "http://localhost:8080";
     }
 
-    public static Integer campusId=1;
+    public static Integer campusId=26;
     public static Integer facultyId;
 
     @Test

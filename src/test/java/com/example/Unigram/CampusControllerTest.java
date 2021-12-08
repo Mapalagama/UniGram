@@ -16,14 +16,16 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CampusControllerTest {
 
     Faker faker = new Faker();
-    public static Integer campusId;
+    public static Integer campusId=26;
 
     @BeforeAll
     public static void beforeAll() {
@@ -59,7 +61,7 @@ public class CampusControllerTest {
     @Test
     @Order(20)
     public void test_get_campus() {
-        Response response = given().when().get("/campus/{id}" , campusId)
+        Response response = given().when().get("/campus/{id}" , 26)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
     }
@@ -86,13 +88,26 @@ public class CampusControllerTest {
         response.prettyPrint();
     }
     @Test
-    @Order(22)
+    @Order(285)
     public void test_delete_campus(){
         Response response = given().when().delete("/campus/{id}" , campusId)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
 
 
+    }
+    @Test
+    @Order(25)
+    public void test_upload_image(){
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("image1.jpg").getFile());
+
+        Response response = given().contentType(ContentType.MULTIPART)
+                .multiPart(file)
+                .when().post("/campus/{id}/photos",campusId)
+                .then().statusCode(200)
+                .extract().response();
+        response.prettyPrint();
     }
 
 
