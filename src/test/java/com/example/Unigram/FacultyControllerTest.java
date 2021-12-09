@@ -51,7 +51,7 @@ public class FacultyControllerTest {
     @Test
     @Order(2)
     public void test_get_faculty(){
-        Response response = given().when().get("/faculties/{id}", facultyId)
+        Response response = given().header("auth","kalanamapalagama.com").when().get("/faculties/{id}", 30)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
     }

@@ -61,7 +61,7 @@ public class CampusControllerTest {
     @Test
     @Order(20)
     public void test_get_campus() {
-        Response response = given().when().get("/campus/{id}" , 26)
+        Response response = given().header("auth","kalanamapalagama.com").when().get("/campus/{id}" , 26)
                 .then().statusCode(200).extract().response();
         response.prettyPrint();
     }
